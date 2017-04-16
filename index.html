@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>登录页面</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		body{
+			color: #555;
+		}
+		#main{
+			text-align: center;
+			padding: 10px;
+		}
+		span{
+			line-height: 1.5em;
+		}
+		hr{
+			margin: 20px 0;
+		}
+		.body{
+			width: 600px;
+			margin: 0 auto;
+			text-align: left;
+		}
+		.body span{
+			font-weight: bold;
+			font-size: 20px;
+		}
+		input[type=text],input[type=password]{
+			height: 30px;
+			line-height: 30px;
+			width: 100%;
+			font-size: 18px;
+			color: #222;
+			text-indent: 10px;
+		}
+		input[type=button]{
+			font-weight: bold;
+			font-size: 16px;
+			padding: 6px 10px;
+		}
+		#login{
+			background-color: #0084CF;
+			color: #fff;
+		}
+		#forget{
+			background-color: #E2E2E2;
+			color: #555;
+			float: right;
+		}
+		#message{
+			background-color: #FF0000;
+			color: #ccc;
+			padding: 11px 10px;
+			margin-bottom: 15px;
+			font-size: 18px;
+			position: relative;
+			display: none;
+		}
+		#message span{
+			position: absolute;
+			right: 10px;
+			background-color: #F31E18;
+			padding: 0 10px;
+			top: 5px;
+			color: #CE0300;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="main">
+		<h1>作业1：登录的前端验证</h1>
+		<span>201430350420 王伊莹</span>
+		<br>
+		<span>软件开发基础（java）</span>
+		<hr>
+		<div class="body">
+			<span>登录</span>
+			<hr>
+			<div id="message"></div>
+			<form>
+				<span>邮箱:</span>
+				<br>
+				<input type="text" name="email" id="email">
+				<br><br>
+				<span>密码:</span>
+				<br>
+				<input type="password" name="password" id="password">
+				<br>
+				<p>
+					<input type="checkbox" name="remenb">
+					<span>记住密码</span>
+				</p>
+				<p>
+					<input type="button" value="登录" id="login">
+					<input type="button" value="忘记密码？" id="forget">
+				</p>
+				<hr>
+				<p>&copy 2017 华南农业大学 计算机科学与工程系</p>
+			</form>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		window.onload=function(){
+			var mess=document.getElementById('message');
+			var colse=function(){
+				var spa=mess.childNodes;
+				spa[1].onclick=function(){
+					mess.style.display='none';
+				}
+			}
+			var forget=document.getElementById('forget');
+			forget.onclick=function(){
+				alert('没有这个实现啊！')
+			}
+			function Isyx(yx){
+				 var reyx= /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+				 return(reyx.test(yx));
+			}
+			var login=document.getElementById('login');
+			login.onclick=function(){
+				if(document.getElementById('email').value==''||document.getElementById('password').value==''){
+					mess.style.backgroundColor='red';
+					mess.style.display='block';
+					mess.innerHTML="错误：[邮箱]和[密码]均不能为空<span>x</span>";
+					colse();
+				}else if(!Isyx(document.getElementById('email').value)){
+					mess.style.display='block';
+					mess.style.backgroundColor='red';
+					mess.innerHTML="错误：[邮箱]的输入格式有错<span>x</span>";
+					colse();
+				}else{
+					mess.style.display='block';
+					mess.style.backgroundColor='green';
+					mess.innerHTML="输入数据验证成功<span>x</span>";
+					var spa=mess.childNodes[1];
+					colse();
+					spa.style.backgroundColor='#1D831B';
+					spa.style.color='#005E00';
+				}
+			}
+		}
+	</script>
+</body>
+</html>
